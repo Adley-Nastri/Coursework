@@ -77,10 +77,6 @@ public class ProductGUI extends JFrame implements ActionListener, MenuListener {
         priceInp.setText(pricing);
         stockAm.setText(theStock);
 
-
-        //prodLbl.setHorizontalAlignment(SwingConstants.LEFT);
-
-
         btn1 = new JButton("Set Price");
         btn1.addActionListener(this);
 
@@ -205,10 +201,6 @@ public class ProductGUI extends JFrame implements ActionListener, MenuListener {
              }
 
         if (e.getSource() == btn2) {
-            //pTot+=1;
-            //String conv = Integer.toString(pTot);
-            //String new_conv = "Product "+conv;
-
             JTextField newProdName = new JTextField();
             JTextField newProdPrice = new JTextField();
             JTextField newProdStock = new JTextField();
@@ -254,18 +246,15 @@ public class ProductGUI extends JFrame implements ActionListener, MenuListener {
             try {
                 Integer stockInput =Integer.parseInt(stockAm.getText());
                 productArrayList.get(pPos-1).reStock(stockInput);
-                //+productArrayList.get(pPos-1).getName()+
                 String str = ""+productArrayList.get(pPos-1).getName()+" (Product "+pPos+") Stock level has been set to "+stockInput+ "";
                 JOptionPane.showMessageDialog(null,str, "Products" , JOptionPane.INFORMATION_MESSAGE);
 
             }
             catch (StockException ex){
                 JOptionPane.showMessageDialog(null, ex, "Oops" , JOptionPane.ERROR_MESSAGE);
-                //ex.printStackTrace();
             }
             catch (NumberFormatException ex){
                 JOptionPane.showMessageDialog(null, ex, "Oops " , JOptionPane.ERROR_MESSAGE);
-                //ex.printStackTrace();
             }
 
         }
