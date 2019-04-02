@@ -171,7 +171,7 @@ public class ProductGUI extends JFrame implements ActionListener, MenuListener {
                 productName.setText(prodName);
                 System.out.println(pPos + "/" + popupMenu.getComponentCount());
             } catch (Exception ex) {
-               // ex.printStackTrace();
+
             }
         }
             if (e.getSource() == btn1)
@@ -184,11 +184,11 @@ public class ProductGUI extends JFrame implements ActionListener, MenuListener {
             }
             catch (PriceException ex){
                 JOptionPane.showMessageDialog(null, ex, "Oops" , JOptionPane.ERROR_MESSAGE);
-                //ex.printStackTrace();
+
             }
             catch (NumberFormatException ex) {
                 JOptionPane.showMessageDialog(null, "String is not in double format or is empty", "Oops " , JOptionPane.ERROR_MESSAGE);
-                //ex.printStackTrace();
+
             }
              }
 
