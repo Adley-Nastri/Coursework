@@ -65,7 +65,7 @@ public class ProductGUI extends JFrame implements ActionListener, MenuListener {
         productName.setText(prodName);
         productName.setEditable(false);
 
-        productTotMoney.setText("£0");
+        productTotMoney.setText("0");
         productTotMoney.setEditable(false);
 
 
@@ -181,6 +181,7 @@ public class ProductGUI extends JFrame implements ActionListener, MenuListener {
             } catch (Exception ex) {
 
             }
+
         }
             if (e.getSource() == btn1)
              {
@@ -191,7 +192,7 @@ public class ProductGUI extends JFrame implements ActionListener, MenuListener {
                 JOptionPane.showMessageDialog(null,str, "Products" , JOptionPane.INFORMATION_MESSAGE);
             }
             catch (PriceException ex){
-                JOptionPane.showMessageDialog(null, ex, "Oops" , JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, ex, "Oops"  , JOptionPane.ERROR_MESSAGE);
 
             }
             catch (NumberFormatException ex) {
