@@ -65,7 +65,7 @@ public class ProductGUI extends JFrame implements ActionListener, MenuListener {
         productName.setText(prodName);
         productName.setEditable(false);
 
-        productTotMoney.setText("0");
+        productTotMoney.setText("0.0");
         productTotMoney.setEditable(false);
 
 
