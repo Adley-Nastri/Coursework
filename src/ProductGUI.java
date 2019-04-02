@@ -20,8 +20,8 @@ public class ProductGUI extends JFrame implements ActionListener, MenuListener {
     JMenu productsList;
     JMenuItem menuProd1, menuProd2, menuProd3;
     JButton btn1 ,btn2, btn3 , btn4;
-    JTextField priceInp, productName, stockAm;
-    JLabel prodLbl, priceLbl, stockLbl;
+    JTextField priceInp, productName, stockAm, productTotMoney;
+    JLabel prodLbl, priceLbl, stockLbl, productTotMoneyLbl;
 
     int pPos =1, pTot =3;
     private JPanel topPanel = new JPanel();
@@ -42,7 +42,7 @@ public class ProductGUI extends JFrame implements ActionListener, MenuListener {
         productArrayList.add(p3);
 
         setTitle("U1803005 ProductGUI");
-        setSize(600, 200);
+        setSize(700, 200);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
@@ -53,6 +53,7 @@ public class ProductGUI extends JFrame implements ActionListener, MenuListener {
         stockAm = new JTextField(6);
 
         productName = new JTextField(10);
+        productTotMoney = new JTextField(10);
 
         priceInp.addActionListener(this);
         stockAm.addActionListener(this);
@@ -64,10 +65,14 @@ public class ProductGUI extends JFrame implements ActionListener, MenuListener {
         productName.setText(prodName);
         productName.setEditable(false);
 
+        productTotMoney.setText("£0");
+        productTotMoney.setEditable(false);
+
 
         prodLbl = new JLabel("Product");
         priceLbl = new JLabel("Price");
         stockLbl = new JLabel("Stock");
+        productTotMoneyLbl = new JLabel("Total earnings");
 
         priceInp.setText(pricing);
         stockAm.setText(theStock);
@@ -95,11 +100,16 @@ public class ProductGUI extends JFrame implements ActionListener, MenuListener {
         topPanel.add(priceInp);
         topPanel.add(stockLbl);
         topPanel.add(stockAm);
+        topPanel.add(productTotMoneyLbl);
+        topPanel.add(productTotMoney);
+
+
 
         botPanel.add(btn1);
         botPanel.add(btn2);
         botPanel.add(btn3);
         botPanel.add(btn4);
+
 
 
 
@@ -166,9 +176,11 @@ public class ProductGUI extends JFrame implements ActionListener, MenuListener {
                 String price = Double.toString(productArrayList.get(pPos-1).getPrice());
                 String prodName = productArrayList.get(pPos-1).getName();
                 String theStock = Integer.toString(productArrayList.get(pPos-1).getStockLevel());
+                String totMon = Double.toString(productArrayList.get(pPos-1).getTotalMoney());
                 priceInp.setText(price);
                 stockAm.setText(theStock);
                 productName.setText(prodName);
+                productTotMoney.setText(totMon);
                 System.out.println(pPos + "/" + popupMenu.getComponentCount());
             } catch (Exception ex) {
 

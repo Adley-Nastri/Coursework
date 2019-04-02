@@ -3,13 +3,14 @@ public class Product
 {
     private String name;
     private int stockLevel;
-    private double price;
+    private double price, totalMoney;
 
     public Product(String nameIn, int stockIn, Double priceIn)
     {
         name = nameIn;
         stockLevel = stockIn;
         price = priceIn;
+        totalMoney = 0;
 
     }
 
@@ -30,6 +31,7 @@ public class Product
             double orderTotal = price * sellAmount;
             String str = String.format("%s Item(s) sold for a total of £%.2f", sellAmount,orderTotal);
             System.out.println(str);
+            totalMoney += orderTotal;
             return orderTotal;
         }
         else
@@ -56,6 +58,10 @@ public class Product
     public int getStockLevel()
     {
         return stockLevel;
+    }
+
+    public double getTotalMoney() {
+        return totalMoney;
     }
 
     public double getPrice()
