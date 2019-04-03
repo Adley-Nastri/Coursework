@@ -273,7 +273,6 @@ public class ProductGUI extends JFrame implements ActionListener, MenuListener {
                     try {
                         productArrayList.get(pPos - 1).sell(Integer.parseInt(sellAmount.getText()));
                         double orderTotal = productArrayList.get(pPos - 1).getPrice() * Integer.parseInt(sellAmount.getText());
-                        //String str = String.format("%s Item(s) sold for a total of £%.2f", Integer.parseInt(sellAmount.getText(),orderTotal));
 
                         JOptionPane.showMessageDialog(null, ""+Integer.parseInt(sellAmount.getText())+" item(s) Sold for "+orderTotal+"", "Sold", JOptionPane.INFORMATION_MESSAGE);
 
