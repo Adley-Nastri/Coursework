@@ -186,9 +186,10 @@ public class ProductGUI extends JFrame implements ActionListener, MenuListener {
             if (e.getSource() == btn1)
              {
             try {
-                Double input =  Double.parseDouble(priceInp.getText());
-                productArrayList.get(pPos-1).setPrice(input);
-                String str = ""+productArrayList.get(pPos-1).getName()+" (Product "+pPos+")  has been set to the price of "+input+ "";
+                Double.parseDouble(priceInp.getText());
+                priceInp.setText(String.format("%.2f",Double.parseDouble(priceInp.getText())));
+                productArrayList.get(pPos-1).setPrice(Double.parseDouble(priceInp.getText()));
+                String str = ""+productArrayList.get(pPos-1).getName()+" (Product "+pPos+")  has been set to the price of "+Double.parseDouble(priceInp.getText())+ "";
                 JOptionPane.showMessageDialog(null,str, "Products" , JOptionPane.INFORMATION_MESSAGE);
             }
             catch (PriceException ex){
@@ -228,9 +229,10 @@ public class ProductGUI extends JFrame implements ActionListener, MenuListener {
                    }
                    catch (StockException se)
                    {
-                       JOptionPane.showMessageDialog(null, se, "Oops " , JOptionPane.ERROR_MESSAGE);
+                       JOptionPane.showMessageDialog(null, se, "Oops" , JOptionPane.ERROR_MESSAGE);
                        return;
                    }
+                    newProdPrice.setText(String.format("%.2f",Double.parseDouble(newProdPrice.getText())));
                     productArrayList.add(new Product(newProdName.getText(), Integer.parseInt(newProdStock.getText()), Double.parseDouble(newProdPrice.getText())));
                     String str = "There are now " + productArrayList.size() + " Products";
                     JOptionPane.showMessageDialog(null, str, "Products ", JOptionPane.INFORMATION_MESSAGE);
@@ -255,7 +257,7 @@ public class ProductGUI extends JFrame implements ActionListener, MenuListener {
                 JOptionPane.showMessageDialog(null, ex, "Oops" , JOptionPane.ERROR_MESSAGE);
             }
             catch (NumberFormatException ex){
-                JOptionPane.showMessageDialog(null, ex, "Oops " , JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, ex, "Oops" , JOptionPane.ERROR_MESSAGE);
             }
 
         }
@@ -275,16 +277,23 @@ public class ProductGUI extends JFrame implements ActionListener, MenuListener {
                         double orderTotal = productArrayList.get(pPos - 1).getPrice() * Integer.parseInt(sellAmount.getText());
 
                         JOptionPane.showMessageDialog(null, ""+Integer.parseInt(sellAmount.getText())+" item(s) Sold for "+orderTotal+"", "Sold", JOptionPane.INFORMATION_MESSAGE);
+                        String totMon = Double.toString(productArrayList.get(pPos-1).getTotalMoney());
+                        productTotMoney.setText(totMon);
+
+                        String theStock = Integer.toString(productArrayList.get(pPos-1).getStockLevel());
+                        stockAm.setText(theStock);
+
+                        productTotMoney.setText(String.format("%.2f",Double.parseDouble(productTotMoney.getText())));
 
 
                     } catch (SellAmountException se) {
-                        JOptionPane.showMessageDialog(null, se, "Oops ", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(null, se, "Oops", JOptionPane.ERROR_MESSAGE);
                         return;
                     }
                 }
 
             } catch (Exception ex) {
-                JOptionPane.showMessageDialog(null, ex, "Oops ", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, ex, "Oops", JOptionPane.ERROR_MESSAGE);
             }
         }
     }
