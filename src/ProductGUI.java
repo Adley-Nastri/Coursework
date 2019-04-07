@@ -9,25 +9,24 @@ import java.util.ArrayList;
 public class ProductGUI extends JFrame implements ActionListener, MenuListener {
 
     Product p1 = new Product("PS4 Pro", 50, 349.47);
-    Product p2 = new Product("Nintendo Switch" +
-            "", 20, 240.42);
+    Product p2 = new Product("Nintendo Switch" + "", 20, 240.42);
     Product p3 = new Product("Soundbar", 30, 109.00);
-    Product[] prodArr = {p1, p2, p3};
-    ArrayList<Product> productArrayList = new ArrayList<Product>();
-    JTextArea text;
-    JMenuBar menuBar;
-    JMenu productsList;
-    JMenuItem menuProd1, menuProd2, menuProd3;
-    JButton btn1, btn2, btn3, btn4;
-    JTextField priceInp, productName, stockAm, productTotMoney;
-    JLabel prodLbl, priceLbl, stockLbl, productTotMoneyLbl;
+    //Product[] prodArr = {p1, p2, p3};
+    private ArrayList<Product> productArrayList = new ArrayList<>();
+    private JTextArea text;
+    private JMenuBar menuBar;
+    private JMenu productsList;
+    private JMenuItem menuProd1, menuProd2, menuProd3;
+    private JButton btn1, btn2, btn3, btn4;
+    private JTextField priceInp, productName, stockAm, productTotMoney;
+    private JLabel prodLbl, priceLbl, stockLbl, productTotMoneyLbl;
 
-    int pPos = 1, pTot = 3;
+    private int pPos = 1, pTot = 3;
     private JPanel topPanel = new JPanel();
-    private JPanel midPanel = new JPanel();
+    //private JPanel midPanel = new JPanel();
     private JPanel botPanel = new JPanel();
 
-    public ProductGUI() {
+    private ProductGUI() {
         productArrayList.add(p1);
         productArrayList.add(p2);
         productArrayList.add(p3);
