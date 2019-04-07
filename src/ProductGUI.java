@@ -8,9 +8,10 @@ import java.util.ArrayList;
 
 public class ProductGUI extends JFrame implements ActionListener, MenuListener {
 
-    Product p1 = new Product("Product 1", 50, 122.47);
-    Product p2 = new Product("Product 2", 20, 150.99);
-    Product p3 = new Product("Product 3", 30, 89.00);
+    Product p1 = new Product("PS4 Pro", 50, 349.47);
+    Product p2 = new Product("Nintendo Switch" +
+            "", 20, 240.42);
+    Product p3 = new Product("Soundbar", 30, 109.00);
     Product[] prodArr = {p1, p2, p3};
     ArrayList<Product> productArrayList = new ArrayList<Product>();
     JTextArea text;
