@@ -72,7 +72,7 @@ public class ProductGUI extends JFrame implements ActionListener, MenuListener {
         prodLbl = new JLabel("Product");
         priceLbl = new JLabel("Price");
         stockLbl = new JLabel("Stock");
-        productTotMoneyLbl = new JLabel("Total earnings");
+        productTotMoneyLbl = new JLabel("Product earnings");
 
         priceInp.setText(pricing);
         stockAm.setText(theStock);
@@ -186,6 +186,9 @@ public class ProductGUI extends JFrame implements ActionListener, MenuListener {
             if (e.getSource() == btn1)
              {
             try {
+                if (priceInp.getText().length() == 0) {
+                   throw new PriceException("Price input is empty");
+                }
                 Double.parseDouble(priceInp.getText());
                 priceInp.setText(String.format("%.2f",Double.parseDouble(priceInp.getText())));
                 productArrayList.get(pPos-1).setPrice(Double.parseDouble(priceInp.getText()));
@@ -193,11 +196,11 @@ public class ProductGUI extends JFrame implements ActionListener, MenuListener {
                 JOptionPane.showMessageDialog(null,str, "Products" , JOptionPane.INFORMATION_MESSAGE);
             }
             catch (PriceException ex){
-                JOptionPane.showMessageDialog(null, ex, "Oops"  , JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, ex, "Exception"  , JOptionPane.ERROR_MESSAGE);
 
             }
             catch (NumberFormatException ex) {
-                JOptionPane.showMessageDialog(null, "String is not in double format or is empty", "Oops " , JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "String is not in double format", "Exception" , JOptionPane.ERROR_MESSAGE);
 
             }
              }
@@ -213,7 +216,9 @@ public class ProductGUI extends JFrame implements ActionListener, MenuListener {
                     newProdPrice,
                     new JLabel("Stock"),
                     newProdStock
+
             };
+
 
             try {
                 int n = JOptionPane.showConfirmDialog(null, inputs, "New product", JOptionPane.OK_CANCEL_OPTION);
@@ -226,10 +231,14 @@ public class ProductGUI extends JFrame implements ActionListener, MenuListener {
                        {
                            throw new StockException("Stock value is less than 0");
                        }
+                       if (newProdName.getText().length() ==0)
+                       {
+                           throw new Exception("Product name is empty");
+                       }
                    }
                    catch (StockException se)
                    {
-                       JOptionPane.showMessageDialog(null, se, "Oops" , JOptionPane.ERROR_MESSAGE);
+                       JOptionPane.showMessageDialog(null, se, "Error" , JOptionPane.ERROR_MESSAGE);
                        return;
                    }
                     newProdPrice.setText(String.format("%.2f",Double.parseDouble(newProdPrice.getText())));
@@ -241,23 +250,29 @@ public class ProductGUI extends JFrame implements ActionListener, MenuListener {
 
             }
             catch (NumberFormatException ex) {
-                JOptionPane.showMessageDialog(null, "Values empty or in Wrong format", "Oops " , JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Values are not in correct format", "Exception" , JOptionPane.ERROR_MESSAGE);
+            }
+            catch (Exception ex)
+            {
+                JOptionPane.showMessageDialog(null, ex, "Exception" , JOptionPane.ERROR_MESSAGE);
             }
         }
 
         if (e.getSource() == btn3) {
             try {
+
                 Integer stockInput =Integer.parseInt(stockAm.getText());
+
                 productArrayList.get(pPos-1).reStock(stockInput);
                 String str = ""+productArrayList.get(pPos-1).getName()+" (Product "+pPos+") Stock level has been set to "+stockInput+ "";
                 JOptionPane.showMessageDialog(null,str, "Products" , JOptionPane.INFORMATION_MESSAGE);
 
             }
             catch (StockException ex){
-                JOptionPane.showMessageDialog(null, ex, "Oops" , JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, ex, "Exception" , JOptionPane.ERROR_MESSAGE);
             }
             catch (NumberFormatException ex){
-                JOptionPane.showMessageDialog(null, ex, "Oops" , JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, ex, "Exception" , JOptionPane.ERROR_MESSAGE);
             }
 
         }
@@ -273,27 +288,25 @@ public class ProductGUI extends JFrame implements ActionListener, MenuListener {
                     return;
                 } else {
                     try {
+                        if ((Integer.parseInt(sellAmount.getText()) <=0)) {
+                            throw new SellAmountException("Cannot sell "+sellAmount.getText()+" item(s)");
+                        }
                         productArrayList.get(pPos - 1).sell(Integer.parseInt(sellAmount.getText()));
                         double orderTotal = productArrayList.get(pPos - 1).getPrice() * Integer.parseInt(sellAmount.getText());
-
                         JOptionPane.showMessageDialog(null, ""+Integer.parseInt(sellAmount.getText())+" item(s) Sold for "+orderTotal+"", "Sold", JOptionPane.INFORMATION_MESSAGE);
                         String totMon = Double.toString(productArrayList.get(pPos-1).getTotalMoney());
                         productTotMoney.setText(totMon);
-
                         String theStock = Integer.toString(productArrayList.get(pPos-1).getStockLevel());
                         stockAm.setText(theStock);
-
                         productTotMoney.setText(String.format("%.2f",Double.parseDouble(productTotMoney.getText())));
 
-
                     } catch (SellAmountException se) {
-                        JOptionPane.showMessageDialog(null, se, "Oops", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(null, se, "Error", JOptionPane.ERROR_MESSAGE);
                         return;
                     }
                 }
-
-            } catch (Exception ex) {
-                JOptionPane.showMessageDialog(null, ex, "Oops", JOptionPane.ERROR_MESSAGE);
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(null,"NumberFormatException : Input '"+sellAmount.getText()+"' is not a valid format", "Exception", JOptionPane.ERROR_MESSAGE);
             }
         }
     }
